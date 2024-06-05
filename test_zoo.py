@@ -19,7 +19,7 @@ class TestZoo(TestCase):
         
     def test_animal_habitat(self):
         """
-        
+        ciao
         """
         zookeeper_1: ZooKeeper = ZooKeeper(name="Gianni", surname="Rossi", id=1)
         fence_1: Fence = Fence(area=100, temperature=25.0, habitat="Sea")
