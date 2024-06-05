@@ -442,6 +442,82 @@ class TestZoo(TestCase):
                              "Error: the function is not checking the types and using None values or it's trying to remove an element the is not present in the fence")
         
 
+    def test_animal_Preferred_habitat_osama(self):
+        """ osama test habbitat preferito sbagliato"""
+
+        animale1= Animal(name="pluto", species="cane", age=21 , height=20.00 , width=1.00, preferred_habitat="mediterraneo")
+        fence_1 = Fence(area=100 , temperature=20 , habitat="ghiaccio")
+        zookeeper_1 = Zookeeper(name="francesco", surname="Rossi",id="1234567890")
+        zookeeper_1.add_animal(animale1,fence_1)
+        result= len(fence_1.animals)
+        message:str = "il controllo dell'habbitat non e corretto"
+
+        self.assertEqual(result , 0 , message)
+
+    def test_dimensione_sbagliata_osama(self):
+        """ osama test dimensione sbagliata"""
+
+        animale1= Animal(name="pluto", species="cane", age=21 , height=20.00 , width=1.00, preferred_habitat="mediterraneo")
+        fence_1 = Fence(area=10 , temperature=20 , habitat="mediterraneo")
+        zookeeper_1 = Zookeeper(name="francesco", surname="Rossi",id="1234567890")
+        zookeeper_1.add_animal(animale1,fence_1)
+        result= len(fence_1.animals)
+        message:str = "il controllo dell'area non e corretto"
+        
+        self.assertEqual(result , 0 , message)
+
+    def test_corretto_osama(self):
+        """ osama test corretto dove sia l'habbitat preferito che la dimensione somo corrette """
+
+        animale1= Animal(name="pluto", species="cane", age=21 , height=20.00 , width=1.00, preferred_habitat="mediterraneo")
+        fence_1 = Fence(area=100 , temperature=20 , habitat="mediterraneo")
+        zookeeper_1 = Zookeeper(name="francesco", surname="Rossi",id="1234567890")
+        zookeeper_1.add_animal(animale1,fence_1)
+        result= len(fence_1.animals)
+        message:str = "errore nella funzione add_animal"
+        
+        self.assertEqual(result , 1 , message)
+    
+    def test_remove_animal_osama(self):
+        """ osama test rimozione animali"""
+
+        animale1= Animal(name="pluto", species="cane", age=21 , height=20.00 , width=1.00, preferred_habitat="mediterraneo")
+        fence_1 = Fence(area=100 , temperature=20 , habitat="mediterraneo")
+        zookeeper_1 = Zookeeper(name="francesco", surname="Rossi",id="1234567890")
+        zookeeper_1.add_animal(animale1,fence_1)
+        zookeeper_1.remove_animal(animale1,fence_1)
+        result= len(fence_1.animals)
+        message:str = "errore nella funzione add_animal"
+        
+        self.assertEqual(result , 0 , message)
+
+    def test_feed_osama(self):
+        """ osama test controllo della funzoione feed"""
+
+        animale_1_k7= Animal(name="pluto", species="cane", age=21 , height=20.00 , width=1.00, preferred_habitat="mediterraneo")
+        fence_1_k7 = Fence(area=100 , temperature=20 , habitat="mediterraneo")
+        zookeeper_1_k7 = Zookeeper(name="francesco", surname="Rossi",id="1234567890")
+        zookeeper_1_k7.add_animal(animale_1_k7,fence_1_k7)
+        controllo = animale_1_k7.area
+        zookeeper_1_k7.feed(animale_1_k7)
+       
+        result = animale_1_k7.area
+        message:str = "errore nella funzione feed"
+        
+        self.assertNotEqual(result , controllo , message)
+    
+    def test_clean_osama(self):
+        """ osama test pulizia recinti"""
+        animale1= Animal(name="pluto", species="cane", age=21 , height=20.00 , width=1.00, preferred_habitat="mediterraneo")
+        fence_1 = Fence(area=100 , temperature=20 , habitat="mediterraneo")
+        zookeeper_1 = Zookeeper(name="francesco", surname="Rossi",id="1234567890")
+        tempo_1= zookeeper_1.clean(fence_1)       
+        zookeeper_1.add_animal(animale1,fence_1)
+        tempo_2= zookeeper_1.clean(fence_1)       
+        
+        message:str = "errore nella funzione clean"
+        
+        self.assertNotEqual(tempo_1 , tempo_2 , message)
 
 
 if __name__ == "__main__":
